@@ -1,0 +1,3427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="VitaFuel - AI Calorie and Fitness Companion">
+
+<title>VitaFuel | AI Calorie & Fitness</title>
+
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+:root{
+
+    --primary:#163d5b;
+    --primary-dark:#0c2b43;
+
+    --green:#b8f24b;
+    --green-dark:#6fa817;
+
+    --mint:#e9f9d7;
+
+    --blue:#eaf5ff;
+
+    --orange:#ff805d;
+
+    --background:#f5f8fa;
+
+    --white:#ffffff;
+
+    --text:#10243a;
+
+    --muted:#66788a;
+
+    --border:#e1e9ef;
+
+    --shadow:
+        0 10px 30px rgba(24,58,82,.07);
+
+}
+
+
+/* RESET */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    line-height:1.55;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+nav{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 6vw;
+
+    background:
+        rgba(255,255,255,.94);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.brand{
+
+    font-size:21px;
+
+    font-weight:900;
+
+    letter-spacing:-1px;
+
+    white-space:nowrap;
+}
+
+.brand b{
+
+    color:var(--green-dark);
+}
+
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+}
+
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    font-weight:700;
+
+    padding:9px 12px;
+
+    border-radius:9px;
+
+    transition:.2s;
+}
+
+
+.nav-links a:hover{
+
+    color:var(--primary);
+
+    background:#f0f5f8;
+}
+
+
+.mobile-menu{
+
+    display:none;
+
+    border:none;
+
+    background:#eef5f8;
+
+    color:var(--primary);
+
+    font-size:20px;
+
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    padding:
+        85px 7vw
+        70px;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 20%,
+            #d9ff92,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 10% 90%,
+            #d9edff,
+            transparent 28%
+        ),
+
+        linear-gradient(
+            120deg,
+            #edf9e1,
+            #eaf5ff
+        );
+}
+
+
+.eyebrow{
+
+    text-transform:uppercase;
+
+    letter-spacing:1.5px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    color:#5c8a0a;
+}
+
+
+.hero h1{
+
+    max-width:780px;
+
+    font-size:
+        clamp(40px,6vw,70px);
+
+    line-height:1.02;
+
+    letter-spacing:-3.5px;
+
+    margin:12px 0 20px;
+}
+
+
+.hero p{
+
+    max-width:620px;
+
+    color:#405a70;
+
+    font-size:18px;
+
+    line-height:1.7;
+}
+
+
+/* BUTTONS */
+
+.actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:30px;
+}
+
+
+button,
+.button{
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:13px 20px;
+
+    font:700 14px inherit;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.2s;
+}
+
+
+button{
+
+    background:var(--green);
+
+    color:#193200;
+}
+
+
+.button{
+
+    background:var(--green);
+
+    color:#193200;
+}
+
+
+.button.outline{
+
+    background:white;
+
+    color:var(--primary);
+
+    border:1px solid #cbd8e2;
+}
+
+
+button:hover,
+.button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(30,70,90,.12);
+}
+
+
+/* =====================================================
+   LAYOUT
+===================================================== */
+
+.wrap{
+
+    max-width:1180px;
+
+    margin:auto;
+
+    padding:
+        65px 24px;
+}
+
+
+section{
+
+    scroll-margin-top:80px;
+}
+
+
+.section-title{
+
+    font-size:
+        clamp(27px,4vw,34px);
+
+    line-height:1.15;
+
+    letter-spacing:-1.3px;
+
+    margin:0 0 8px;
+}
+
+
+.lead{
+
+    color:var(--muted);
+
+    max-width:720px;
+}
+
+
+.two{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:25px;
+
+    align-items:start;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-top:25px;
+}
+
+
+.card{
+
+    background:var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:23px;
+
+    box-shadow:var(--shadow);
+
+    transition:.2s;
+}
+
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(25,60,85,.10);
+}
+
+
+.card h3{
+
+    margin:8px 0;
+}
+
+
+.card p{
+
+    color:var(--muted);
+}
+
+
+.icon{
+
+    width:46px;
+
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:var(--mint);
+
+    font-size:23px;
+}
+
+
+/* =====================================================
+   FORMS
+===================================================== */
+
+.form{
+
+    background:white;
+
+    padding:25px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+}
+
+
+.fields{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:16px;
+}
+
+
+label{
+
+    display:block;
+
+    color:#43596b;
+
+    font-size:12px;
+
+    font-weight:800;
+}
+
+
+input,
+select{
+
+    width:100%;
+
+    margin-top:6px;
+
+    padding:11px 12px;
+
+    border:
+        1px solid #d5e0e8;
+
+    border-radius:10px;
+
+    background:white;
+
+    color:var(--text);
+
+    font:inherit;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+
+input:focus,
+select:focus{
+
+    border-color:
+        var(--green-dark);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(184,242,75,.22);
+}
+
+
+/* =====================================================
+   METRICS
+===================================================== */
+
+.metric{
+
+    font-size:29px;
+
+    font-weight:900;
+
+    letter-spacing:-1.2px;
+}
+
+
+.metric.big{
+
+    font-size:44px;
+
+    margin:16px 0;
+}
+
+
+.metric small{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    font-weight:700;
+}
+
+
+.tag{
+
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:99px;
+
+    background:var(--mint);
+
+    color:#4e7900;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+.statrow{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:12px 0;
+
+    border-bottom:
+        1px solid #edf1f3;
+}
+
+
+.statrow:last-child{
+
+    border-bottom:none;
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress{
+
+    height:12px;
+
+    background:#e5ecef;
+
+    border-radius:99px;
+
+    overflow:hidden;
+
+    margin:15px 0 10px;
+}
+
+
+.progress i{
+
+    display:block;
+
+    height:100%;
+
+    width:0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8ed82a,
+            #55b08b
+        );
+
+    border-radius:99px;
+
+    transition:.5s;
+}
+
+
+/* =====================================================
+   FOOD LOG
+===================================================== */
+
+.food-log{
+
+    margin-top:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+
+.food-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px;
+
+    background:#f6f9fb;
+
+    border:
+        1px solid #e5edf2;
+
+    border-radius:12px;
+
+    gap:10px;
+}
+
+
+.food-info strong{
+
+    display:block;
+}
+
+
+.food-info span{
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+
+.delete-btn{
+
+    background:#ffe9e3;
+
+    color:#c64f32;
+
+    padding:7px 10px;
+
+    font-size:12px;
+}
+
+
+/* =====================================================
+   CHART
+===================================================== */
+
+.chart{
+
+    height:210px;
+
+    display:flex;
+
+    align-items:end;
+
+    justify-content:space-around;
+
+    gap:12px;
+
+    padding:
+        20px 8px 0;
+
+    border-bottom:
+        1px solid #dce6ed;
+}
+
+
+.bar{
+
+    width:42px;
+
+    min-height:20px;
+
+    border-radius:
+        9px 9px 0 0;
+
+    background:#79c929;
+
+    position:relative;
+
+    transition:.3s;
+}
+
+
+.bar:hover{
+
+    opacity:.75;
+}
+
+
+.bar span{
+
+    position:absolute;
+
+    bottom:-28px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    white-space:nowrap;
+}
+
+
+/* =====================================================
+   RECOMMENDATION
+===================================================== */
+
+.recommend{
+
+    background:
+        linear-gradient(
+            145deg,
+            #143c59,
+            #1b506f
+        );
+
+    color:white;
+
+    padding:28px;
+
+    border-radius:22px;
+
+    box-shadow:var(--shadow);
+}
+
+
+.recommend h3{
+
+    font-size:24px;
+
+    margin-top:15px;
+}
+
+
+.recommend li{
+
+    margin:10px 0;
+}
+
+
+/* =====================================================
+   TECHNIQUES
+===================================================== */
+
+.tech{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:25px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-container{
+
+    overflow-x:auto;
+
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+}
+
+
+.history{
+
+    width:100%;
+
+    min-width:600px;
+
+    border-collapse:collapse;
+
+    background:white;
+}
+
+
+.history th{
+
+    text-align:left;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:13px;
+
+    font-size:13px;
+}
+
+
+.history td{
+
+    padding:13px;
+
+    border-bottom:
+        1px solid #e9eef1;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   DISCLAIMER
+===================================================== */
+
+.disclaimer{
+
+    background:#fff5d8;
+
+    border:
+        1px solid #f4d992;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    color:#664b15;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    background:#0f2539;
+
+    color:#dbe9f0;
+
+    padding:
+        40px 7vw;
+
+    font-size:13px;
+
+    text-align:center;
+}
+
+
+footer b{
+
+    color:var(--green);
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:900px){
+
+    .grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+
+    .tech{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+
+    .two{
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+    nav{
+
+        padding:
+            12px 16px;
+    }
+
+
+    .mobile-menu{
+
+        display:block;
+    }
+
+
+    .nav-links{
+
+        display:none;
+
+        position:absolute;
+
+        top:62px;
+
+        left:12px;
+
+        right:12px;
+
+        padding:10px;
+
+        background:white;
+
+        border:
+            1px solid var(--border);
+
+        border-radius:15px;
+
+        box-shadow:
+            0 15px 35px
+            rgba(20,50,70,.12);
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+
+    .nav-links.active{
+
+        display:flex;
+    }
+
+
+    .nav-links a{
+
+        padding:12px;
+    }
+
+
+    .hero{
+
+        padding:
+            50px 20px;
+    }
+
+
+    .hero h1{
+
+        font-size:40px;
+
+        letter-spacing:-2.5px;
+    }
+
+
+    .hero p{
+
+        font-size:16px;
+    }
+
+
+    .actions{
+
+        flex-direction:column;
+    }
+
+
+    .actions .button{
+
+        width:100%;
+    }
+
+
+    .wrap{
+
+        padding:
+            45px 16px;
+    }
+
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .tech{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .fields{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .form{
+
+        padding:18px;
+    }
+
+
+    .card{
+
+        padding:19px;
+    }
+
+
+    .metric.big{
+
+        font-size:38px;
+    }
+
+
+    .chart{
+
+        height:180px;
+    }
+
+
+    .bar{
+
+        width:30px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media(max-width:390px){
+
+    .hero h1{
+
+        font-size:35px;
+    }
+
+
+    .section-title{
+
+        font-size:27px;
+    }
+
+
+    .wrap{
+
+        padding-left:14px;
+
+        padding-right:14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+    <div class="brand">
+        vita<b>fuel</b> ✦
+    </div>
+
+
+    <div class="nav-links" id="navLinks">
+
+        <a href="#profile">Profile</a>
+
+        <a href="#food">Nutrition</a>
+
+        <a href="#exercise">Exercise</a>
+
+        <a href="#dashboard">Dashboard</a>
+
+        <a href="#about">About</a>
+
+    </div>
+
+
+    <button
+        class="mobile-menu"
+        onclick="toggleMenu()">
+
+        ☰
+
+    </button>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="eyebrow">
+        Smart wellness companion
+    </div>
+
+
+    <h1>
+        Understand your daily energy.
+        Build healthier habits.
+    </h1>
+
+
+    <p>
+        VitaFuel helps you estimate daily calorie needs,
+        track food intake, monitor exercise and understand
+        your energy balance through simple data science.
+    </p>
+
+
+    <div class="actions">
+
+        <a
+            class="button"
+            href="#profile">
+
+            Calculate My Calories
+
+        </a>
+
+
+        <a
+            class="button outline"
+            href="#food">
+
+            Track Food
+
+        </a>
+
+
+        <a
+            class="button outline"
+            href="#exercise">
+
+            Track Exercise
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section class="wrap">
+
+    <h2 class="section-title">
+        Everything in one place
+    </h2>
+
+    <p class="lead">
+        Calculate, track and understand your daily
+        nutrition and activity.
+    </p>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <div class="icon">◌</div>
+
+            <h3>
+                Personal Target
+            </h3>
+
+            <p>
+                Calculate BMI, BMR, TDEE and
+                a goal-based calorie target.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🍎</div>
+
+            <h3>
+                Food Tracker
+            </h3>
+
+            <p>
+                Track Indian and international
+                foods with calories and macros.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🏃</div>
+
+            <h3>
+                Exercise Burn
+            </h3>
+
+            <p>
+                Estimate calories burned using
+                exercise intensity and duration.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">✦</div>
+
+            <h3>
+                AI Prediction
+            </h3>
+
+            <p>
+                Connect Linear Regression and
+                Random Forest models to the app.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section
+    id="profile"
+    class="wrap two">
+
+
+<div>
+
+    <h2 class="section-title">
+        My Profile
+    </h2>
+
+    <p class="lead">
+        Enter your details to calculate your
+        estimated daily energy requirements.
+    </p>
+
+
+    <div class="form">
+
+        <div class="fields">
+
+
+            <label>
+                Age
+                <input
+                    id="age"
+                    type="number"
+                    min="10"
+                    max="100"
+                    value="30">
+            </label>
+
+
+            <label>
+                Gender
+
+                <select id="gender">
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                </select>
+
+            </label>
+
+
+            <label>
+                Height (cm)
+
+                <input
+                    id="height"
+                    type="number"
+                    min="100"
+                    max="250"
+                    value="165">
+
+            </label>
+
+
+            <label>
+                Weight (kg)
+
+                <input
+                    id="weight"
+                    type="number"
+                    min="25"
+                    max="300"
+                    value="65">
+
+            </label>
+
+
+            <label>
+                Activity Level
+
+                <select id="activity">
+
+                    <option value="1.2">
+                        Sedentary
+                    </option>
+
+                    <option value="1.375">
+                        Lightly Active
+                    </option>
+
+                    <option value="1.55" selected>
+                        Moderately Active
+                    </option>
+
+                    <option value="1.725">
+                        Very Active
+                    </option>
+
+                    <option value="1.9">
+                        Extremely Active
+                    </option>
+
+                </select>
+
+            </label>
+
+
+            <label>
+                Fitness Goal
+
+                <select id="goal">
+
+                    <option value="-450">
+                        Weight Loss
+                    </option>
+
+                    <option value="0" selected>
+                        General Fitness
+                    </option>
+
+                    <option value="0">
+                        Weight Maintenance
+                    </option>
+
+                    <option value="300">
+                        Weight Gain
+                    </option>
+
+                </select>
+
+            </label>
+
+        </div>
+
+
+        <button
+            onclick="calculate()"
+            style="margin-top:18px">
+
+            Update My Estimates
+
+        </button>
+
+
+        <button
+            onclick="resetProfile()"
+            style="
+                margin-top:10px;
+                background:#eef3f6;
+                color:#153b5b;">
+
+            Reset
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div class="card">
+
+    <span class="tag">
+        Estimated Daily Requirement
+    </span>
+
+
+    <div
+        class="metric big"
+        id="target">
+
+        2,020
+        <small>kcal/day</small>
+
+    </div>
+
+
+    <div class="statrow">
+
+        <span>BMI</span>
+
+        <b id="bmi">
+            23.9
+        </b>
+
+    </div>
+
+
+    <div class="statrow">
+
+        <span>BMR</span>
+
+        <b id="bmr">
+            1,370 kcal
+        </b>
+
+    </div>
+
+
+    <div class="statrow">
+
+        <span>Estimated TDEE</span>
+
+        <b id="tdee">
+            2,124 kcal
+        </b>
+
+    </div>
+
+
+    <p class="lead"
+       style="font-size:13px;margin-top:18px">
+
+        These values are estimates based on
+        your profile and selected activity level.
+
+    </p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOD TRACKER
+===================================================== -->
+
+<section
+    id="food"
+    class="wrap two">
+
+
+<div>
+
+    <h2 class="section-title">
+        Food & Nutrition
+    </h2>
+
+    <p class="lead">
+        Select a food, enter the quantity and
+        build your daily food log.
+    </p>
+
+
+    <div class="form">
+
+
+        <div class="fields">
+
+
+            <label>
+
+                Food
+
+                <select id="foodName">
+
+
+                    <!-- INDIAN FOODS -->
+
+                    <optgroup label="Indian Foods">
+
+                        <option value="130,3,28,0.3">
+                            🍚 Rice
+                        </option>
+
+                        <option value="120,3.5,18,4">
+                            🫓 Roti
+                        </option>
+
+                        <option value="180,4,30,5">
+                            🫓 Paratha
+                        </option>
+
+                        <option value="210,5,32,7">
+                            🥞 Dosa
+                        </option>
+
+                        <option value="160,4,30,3">
+                            🥞 Idli
+                        </option>
+
+                        <option value="190,5,30,6">
+                            🥣 Poha
+                        </option>
+
+                        <option value="220,6,35,7">
+                            🍲 Upma
+                        </option>
+
+                        <option value="250,8,30,10">
+                            🫘 Chole
+                        </option>
+
+                        <option value="230,9,28,8">
+                            🫘 Rajma
+                        </option>
+
+                        <option value="210,7,30,7">
+                            🍛 Dal
+                        </option>
+
+                        <option value="190,5,25,8">
+                            🥔 Aloo Sabzi
+                        </option>
+
+                        <option value="170,5,18,9">
+                            🍛 Paneer Curry
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- PROTEIN -->
+
+                    <optgroup label="Protein">
+
+                        <option value="72,6.3,0.4,4.8">
+                            🥚 Egg
+                        </option>
+
+                        <option value="165,31,0,3.6">
+                            🍗 Chicken
+                        </option>
+
+                        <option value="208,22,0,13">
+                            🐟 Fish
+                        </option>
+
+                        <option value="265,25,0,18">
+                            🥩 Beef
+                        </option>
+
+                        <option value="143,26,0,4">
+                            🦃 Turkey
+                        </option>
+
+                        <option value="120,22,4,2">
+                            🧀 Paneer
+                        </option>
+
+                        <option value="130,17,7,3">
+                            🥛 Tofu
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- FRUITS -->
+
+                    <optgroup label="Fruits">
+
+                        <option value="105,1.3,27,0.4">
+                            🍌 Banana
+                        </option>
+
+                        <option value="95,0.5,25,0.3">
+                            🍎 Apple
+                        </option>
+
+                        <option value="62,0.8,15,0.2">
+                            🍊 Orange
+                        </option>
+
+                        <option value="60,0.6,15,0.2">
+                            🍉 Watermelon
+                        </option>
+
+                        <option value="69,0.7,18,0.2">
+                            🥭 Mango
+                        </option>
+
+                        <option value="68,0.7,18,0.3">
+                            🍇 Grapes
+                        </option>
+
+                        <option value="50,0.4,13,0.2">
+                            🍓 Strawberry
+                        </option>
+
+                        <option value="100,1.1,26,0.3">
+                            🍍 Pineapple
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- BREAKFAST -->
+
+                    <optgroup label="Breakfast">
+
+                        <option value="150,5,27,3">
+                            🥣 Oats
+                        </option>
+
+                        <option value="140,6,20,4">
+                            🥛 Milk
+                        </option>
+
+                        <option value="80,2,15,1">
+                            🍞 Bread
+                        </option>
+
+                        <option value="120,4,22,2">
+                            🥣 Cornflakes
+                        </option>
+
+                        <option value="180,6,25,7">
+                            🥪 Sandwich
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- SNACKS -->
+
+                    <optgroup label="Snacks">
+
+                        <option value="160,6,14,10">
+                            🥜 Peanuts
+                        </option>
+
+                        <option value="170,6,6,15">
+                            🌰 Almonds
+                        </option>
+
+                        <option value="90,3,15,2">
+                            🍿 Popcorn
+                        </option>
+
+                        <option value="150,2,20,7">
+                            🍪 Biscuits
+                        </option>
+
+                        <option value="210,3,25,11">
+                            🍟 French Fries
+                        </option>
+
+                    </optgroup>
+
+
+                    <!-- DRINKS -->
+
+                    <optgroup label="Drinks">
+
+                        <option value="120,6,9,5">
+                            🥛 Milk
+                        </option>
+
+                        <option value="90,1,22,0">
+                            🧃 Orange Juice
+                        </option>
+
+                        <option value="120,4,20,3">
+                            ☕ Milk Tea
+                        </option>
+
+                        <option value="100,3,15,3">
+                            ☕ Coffee
+                        </option>
+
+                    </optgroup>
+
+
+                </select>
+
+            </label>
+
+
+            <label>
+
+                Quantity / Servings
+
+                <input
+                    id="qty"
+                    type="number"
+                    value="1"
+                    min="0.1"
+                    step="0.1">
+
+            </label>
+
+
+            <label>
+
+                Meal
+
+                <select id="meal">
+
+                    <option>Breakfast</option>
+
+                    <option>Lunch</option>
+
+                    <option>Dinner</option>
+
+                    <option>Snack</option>
+
+                </select>
+
+            </label>
+
+
+        </div>
+
+
+        <button
+            onclick="addFood()"
+            style="margin-top:18px">
+
+            + Add Food
+
+        </button>
+
+
+        <div
+            id="foodLog"
+            class="food-log">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="card">
+
+    <span class="tag">
+        Today's Intake
+    </span>
+
+
+    <div
+        class="metric big"
+        id="intake">
+
+        0
+        <small>kcal</small>
+
+    </div>
+
+
+    <div class="progress">
+
+        <i id="prog"></i>
+
+    </div>
+
+
+    <p
+        class="lead"
+        id="progressText">
+
+        0% of your estimated target
+
+    </p>
+
+
+    <div class="statrow">
+
+        <span>Protein</span>
+
+        <b id="protein">
+            0 g
+        </b>
+
+    </div>
+
+
+    <div class="statrow">
+
+        <span>Carbohydrates</span>
+
+        <b id="carbs">
+            0 g
+        </b>
+
+    </div>
+
+
+    <div class="statrow">
+
+        <span>Fat</span>
+
+        <b id="fat">
+            0 g
+        </b>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EXERCISE
+===================================================== -->
+
+<section
+    id="exercise"
+    class="wrap two">
+
+
+<div>
+
+    <h2 class="section-title">
+        Exercise & Calories Burned
+    </h2>
+
+    <p class="lead">
+        Choose an activity and duration to estimate
+        calories burned.
+    </p>
+
+
+    <div class="form">
+
+
+        <div class="fields">
+
+
+            <label>
+
+                Exercise
+
+                <select id="exerciseType">
+
+                    <option value="3.5">
+                        🚶 Walking
+                    </option>
+
+                    <option value="9.8">
+                        🏃 Running
+                    </option>
+
+                    <option value="7.5">
+                        🚴 Cycling
+                    </option>
+
+                    <option value="8">
+                        🏊 Swimming
+                    </option>
+
+                    <option value="11">
+                        🪢 Skipping
+                    </option>
+
+                    <option value="3">
+                        🧘 Yoga
+                    </option>
+
+                    <option value="5">
+                        🏋️ Strength Training
+                    </option>
+
+                    <option value="5.5">
+                        💃 Dancing
+                    </option>
+
+                    <option value="8">
+                        🥊 Boxing
+                    </option>
+
+                    <option value="6">
+                        🏸 Badminton
+                    </option>
+
+                    <option value="7">
+                        ⚽ Football
+                    </option>
+
+                </select>
+
+            </label>
+
+
+            <label>
+
+                Duration (minutes)
+
+                <input
+                    id="duration"
+                    type="number"
+                    min="1"
+                    value="30">
+
+            </label>
+
+
+            <label>
+
+                Heart Rate
+                <small>(optional)</small>
+
+                <input
+                    id="heart"
+                    type="number"
+                    value="140">
+
+            </label>
+
+        </div>
+
+
+        <button
+            onclick="burn()"
+            style="margin-top:18px">
+
+            Estimate Calories Burned
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div class="card">
+
+    <span class="tag">
+        Exercise Result
+    </span>
+
+
+    <h3
+        id="activityName"
+        style="font-size:24px">
+
+        Walking
+
+    </h3>
+
+
+    <p id="durationText">
+        Duration: 30 minutes
+    </p>
+
+
+    <div
+        class="metric big"
+        id="burned">
+
+        🔥 0
+        <small>kcal</small>
+
+    </div>
+
+
+    <p class="lead"
+       style="font-size:13px">
+
+        Actual energy expenditure varies with
+        body weight, intensity, pace and conditions.
+
+    </p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section
+    id="dashboard"
+    class="wrap">
+
+    <h2 class="section-title">
+        Today's Dashboard
+    </h2>
+
+    <p class="lead">
+        A quick overview of your calorie balance.
+    </p>
+
+
+    <div class="grid">
+
+
+        <div class="card">
+
+            <span class="tag">
+                Daily Target
+            </span>
+
+            <div
+                class="metric"
+                id="dashTarget">
+
+                0 kcal
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <span class="tag">
+                Food Intake
+            </span>
+
+            <div
+                class="metric"
+                id="dashFood">
+
+                0 kcal
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <span class="tag">
+                Burned
+            </span>
+
+            <div
+                class="metric"
+                id="dashBurn">
+
+                0 kcal
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <span class="tag">
+                Remaining
+            </span>
+
+            <div
+                class="metric"
+                id="remaining">
+
+                0 kcal
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="two"
+        style="margin-top:25px">
+
+
+        <div class="card">
+
+            <h3>
+                Weekly Calories
+            </h3>
+
+
+            <div class="chart">
+
+                <div
+                    class="bar"
+                    style="height:66%">
+                    <span>Mon</span>
+                </div>
+
+                <div
+                    class="bar"
+                    style="height:83%">
+                    <span>Tue</span>
+                </div>
+
+                <div
+                    class="bar"
+                    style="height:55%">
+                    <span>Wed</span>
+                </div>
+
+                <div
+                    class="bar"
+                    style="height:76%">
+                    <span>Thu</span>
+                </div>
+
+                <div
+                    class="bar"
+                    style="height:61%">
+                    <span>Fri</span>
+                </div>
+
+                <div
+                    class="bar"
+                    style="height:88%">
+                    <span>Sat</span>
+                </div>
+
+                <div
+                    class="bar"
+                    style="height:70%">
+                    <span>Sun</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Macro Distribution
+            </h3>
+
+
+            <div class="chart">
+
+                <div
+                    class="bar"
+                    style="
+                    height:47%;
+                    background:#6bb6df">
+
+                    <span>
+                        Protein
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="bar"
+                    style="
+                    height:80%;
+                    background:#79c929">
+
+                    <span>
+                        Carbs
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="bar"
+                    style="
+                    height:39%;
+                    background:#ffaf8f">
+
+                    <span>
+                        Fat
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HISTORY
+===================================================== -->
+
+<section class="wrap">
+
+    <h2 class="section-title">
+        Daily History
+    </h2>
+
+    <p class="lead">
+        Example historical activity data.
+    </p>
+
+
+    <div class="table-container">
+
+        <table class="history">
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Intake</th>
+
+                    <th>Burned</th>
+
+                    <th>Exercise</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>Sept 1</td>
+
+                    <td>1,900 kcal</td>
+
+                    <td>300 kcal</td>
+
+                    <td>Running</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Sept 2</td>
+
+                    <td>2,050 kcal</td>
+
+                    <td>250 kcal</td>
+
+                    <td>Walking</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Sept 3</td>
+
+                    <td>1,750 kcal</td>
+
+                    <td>400 kcal</td>
+
+                    <td>Cycling</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RECOMMENDATIONS + AI
+===================================================== -->
+
+<section class="wrap two">
+
+
+<div class="recommend">
+
+    <span class="tag">
+        General Fitness
+    </span>
+
+
+    <h3>
+        Build sustainable habits
+    </h3>
+
+
+    <ul>
+
+        <li>
+            Walk for 30 minutes.
+        </li>
+
+        <li>
+            Include strength training.
+        </li>
+
+        <li>
+            Take regular movement breaks.
+        </li>
+
+        <li>
+            Include fruits and vegetables
+            in your meals.
+        </li>
+
+        <li>
+            Stay hydrated throughout the day.
+        </li>
+
+        <li>
+            Prioritize adequate protein.
+        </li>
+
+    </ul>
+
+</div>
+
+
+
+<div>
+
+    <h2 class="section-title">
+        AI Calories Prediction
+    </h2>
+
+
+    <p class="lead">
+
+        The planned machine-learning module can
+        use age, gender, height, weight, duration,
+        heart rate, body temperature and exercise
+        type to predict calories burned.
+
+    </p>
+
+
+    <div class="card">
+
+        <div class="metric">
+
+            285
+            <small>
+                estimated kcal
+            </small>
+
+        </div>
+
+
+        <p>
+            Model comparison:
+            Linear Regression and
+            Random Forest Regression.
+        </p>
+
+
+        <div class="statrow">
+
+            <span>
+                MAE
+            </span>
+
+            <b>
+                After training
+            </b>
+
+        </div>
+
+
+        <div class="statrow">
+
+            <span>
+                RMSE
+            </span>
+
+            <b>
+                After training
+            </b>
+
+        </div>
+
+
+        <div class="statrow">
+
+            <span>
+                R² Score
+            </span>
+
+            <b>
+                After training
+            </b>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CALORIE BURNING TECHNIQUES
+===================================================== -->
+
+<section class="wrap">
+
+    <h2 class="section-title">
+        Calorie Burning Techniques
+    </h2>
+
+
+    <p class="lead">
+        Different activities provide different
+        levels of energy expenditure.
+    </p>
+
+
+    <div class="tech">
+
+
+        <div class="card">
+
+            <h3>
+                🚶 Walking
+            </h3>
+
+            <p>
+                Low intensity • 30 minutes
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🏃 Running
+            </h3>
+
+            <p>
+                High intensity • 30 minutes
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🚴 Cycling
+            </h3>
+
+            <p>
+                Moderate intensity • 30 minutes
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🔥 HIIT
+            </h3>
+
+            <p>
+                High intensity • Short intervals
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🏊 Swimming
+            </h3>
+
+            <p>
+                Full-body activity • 30 minutes
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🏋️ Strength Training
+            </h3>
+
+            <p>
+                Resistance exercise • 30 minutes
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🪢 Skipping
+            </h3>
+
+            <p>
+                High intensity • 20 minutes
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🧘 Yoga
+            </h3>
+
+            <p>
+                Mobility and balance • 30 minutes
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                💃 Dancing
+            </h3>
+
+            <p>
+                Moderate intensity • 30 minutes
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    id="about"
+    class="wrap two">
+
+
+<div>
+
+    <h2 class="section-title">
+        About VitaFuel
+    </h2>
+
+
+    <p>
+
+        VitaFuel is a data-science based wellness
+        project that combines calorie estimation,
+        nutrition tracking, exercise analysis and
+        machine learning.
+
+    </p>
+
+
+    <p>
+
+        The project demonstrates how Python,
+        data analysis and machine learning can
+        be integrated into a user-friendly
+        health and fitness application.
+
+    </p>
+
+</div>
+
+
+
+<div class="disclaimer">
+
+    <b>
+        Important Disclaimer
+    </b>
+
+
+    <br><br>
+
+
+    Calorie, BMI, BMR, TDEE, nutrition and
+    exercise values shown by this application
+    are estimates.
+
+    <br><br>
+
+    Food values can vary depending on ingredients,
+    preparation method and serving size.
+
+    <br><br>
+
+    VitaFuel is intended for educational and
+    general wellness purposes and is not a
+    substitute for professional medical,
+    nutritional or fitness advice.
+
+</div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <b>vitaFUEL</b>
+
+    <br>
+
+    AI Calorie & Fitness Companion
+
+    <br><br>
+
+    Built as a Data Science & Machine Learning
+    project.
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let total = 0;
+
+let pro = 0;
+
+let carb = 0;
+
+let fat = 0;
+
+let target = 0;
+
+let burnVal = 0;
+
+let foodItems = [];
+
+
+/* =====================================================
+   FORMAT NUMBER
+===================================================== */
+
+function fmt(number){
+
+    return Math.round(number)
+        .toLocaleString();
+
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+function toggleMenu(){
+
+    const menu =
+        document.getElementById("navLinks");
+
+    menu.classList.toggle("active");
+
+}
+
+
+/* CLOSE MENU AFTER CLICK */
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            function(){
+
+                document
+                    .getElementById("navLinks")
+                    .classList
+                    .remove("active");
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   CALCULATE BMI / BMR / TDEE
+===================================================== */
+
+function calculate(){
+
+    const age =
+        Number(
+            document.getElementById("age").value
+        );
+
+    const height =
+        Number(
+            document.getElementById("height").value
+        );
+
+    const weight =
+        Number(
+            document.getElementById("weight").value
+        );
+
+    const gender =
+        document.getElementById("gender").value;
+
+    const activity =
+        Number(
+            document.getElementById("activity").value
+        );
+
+    const goal =
+        Number(
+            document.getElementById("goal").value
+        );
+
+
+    if(
+        age <= 0 ||
+        height <= 0 ||
+        weight <= 0
+    ){
+
+        alert(
+            "Please enter valid profile details."
+        );
+
+        return;
+
+    }
+
+
+    /* Mifflin-St Jeor Equation */
+
+    let bmr;
+
+
+    if(gender === "Male"){
+
+        bmr =
+            (10 * weight) +
+            (6.25 * height) -
+            (5 * age) +
+            5;
+
+    }
+
+    else{
+
+        bmr =
+            (10 * weight) +
+            (6.25 * height) -
+            (5 * age) -
+            161;
+
+    }
+
+
+    const tdee =
+        bmr * activity;
+
+
+    target =
+        Math.max(
+            1200,
+            tdee + goal
+        );
+
+
+    const bmiValue =
+        weight /
+        Math.pow(height / 100, 2);
+
+
+    document.getElementById("bmi")
+        .textContent =
+        bmiValue.toFixed(1);
+
+
+    document.getElementById("bmr")
+        .textContent =
+        fmt(bmr) + " kcal";
+
+
+    document.getElementById("tdee")
+        .textContent =
+        fmt(tdee) + " kcal";
+
+
+    document.getElementById("target")
+        .innerHTML =
+        fmt(target) +
+        ' <small>kcal/day</small>';
+
+
+    document.getElementById("dashTarget")
+        .textContent =
+        fmt(target) + " kcal";
+
+
+    updateFood();
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+   ADD FOOD
+===================================================== */
+
+function addFood(){
+
+    const select =
+        document.getElementById("foodName");
+
+
+    const quantity =
+        Number(
+            document.getElementById("qty").value
+        );
+
+
+    const meal =
+        document.getElementById("meal").value;
+
+
+    if(quantity <= 0){
+
+        alert(
+            "Please enter a valid quantity."
+        );
+
+        return;
+
+    }
+
+
+    const selected =
+        select.options[
+            select.selectedIndex
+        ];
+
+
+    const values =
+        selected.value
+            .split(",")
+            .map(Number);
+
+
+    const calories = values[0];
+
+    const protein = values[1];
+
+    const carbs = values[2];
+
+    const fats = values[3];
+
+
+    const item = {
+
+        id:Date.now(),
+
+        name:selected.text,
+
+        meal:meal,
+
+        quantity:quantity,
+
+        calories:calories * quantity,
+
+        protein:protein * quantity,
+
+        carbs:carbs * quantity,
+
+        fat:fats * quantity
+
+    };
+
+
+    foodItems.push(item);
+
+
+    recalculateFood();
+
+
+    document.getElementById("qty")
+        .value = 1;
+
+}
+
+
+/* =====================================================
+   RECALCULATE FOOD
+===================================================== */
+
+function recalculateFood(){
+
+    total = 0;
+
+    pro = 0;
+
+    carb = 0;
+
+    fat = 0;
+
+
+    foodItems.forEach(item => {
+
+        total += item.calories;
+
+        pro += item.protein;
+
+        carb += item.carbs;
+
+        fat += item.fat;
+
+    });
+
+
+    updateFood();
+
+    renderFoodLog();
+
+}
+
+
+/* =====================================================
+   UPDATE FOOD DISPLAY
+===================================================== */
+
+function updateFood(){
+
+    document.getElementById("intake")
+        .innerHTML =
+        fmt(total) +
+        ' <small>kcal</small>';
+
+
+    document.getElementById("protein")
+        .textContent =
+        pro.toFixed(0) + " g";
+
+
+    document.getElementById("carbs")
+        .textContent =
+        carb.toFixed(0) + " g";
+
+
+    document.getElementById("fat")
+        .textContent =
+        fat.toFixed(0) + " g";
+
+
+    let percentage = 0;
+
+
+    if(target > 0){
+
+        percentage =
+            (total / target) * 100;
+
+    }
+
+
+    percentage =
+        Math.min(
+            100,
+            Math.max(
+                0,
+                percentage
+            )
+        );
+
+
+    document.getElementById("prog")
+        .style.width =
+        percentage + "%";
+
+
+    document.getElementById("progressText")
+        .textContent =
+        Math.round(percentage) +
+        "% of your estimated target";
+
+
+    document.getElementById("dashFood")
+        .textContent =
+        fmt(total) + " kcal";
+
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+   FOOD LOG DISPLAY
+===================================================== */
+
+function renderFoodLog(){
+
+    const container =
+        document.getElementById("foodLog");
+
+
+    if(foodItems.length === 0){
+
+        container.innerHTML =
+            '<p class="lead" style="font-size:13px">' +
+            'No foods added yet.' +
+            '</p>';
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    foodItems.forEach(item => {
+
+        const div =
+            document.createElement("div");
+
+
+        div.className =
+            "food-item";
+
+
+        div.innerHTML = `
+
+            <div class="food-info">
+
+                <strong>
+                    ${item.name}
+                </strong>
+
+                <span>
+                    ${item.meal}
+                    •
+                    ${item.quantity} serving(s)
+                    •
+                    ${fmt(item.calories)} kcal
+                </span>
+
+            </div>
+
+            <button
+                class="delete-btn"
+                onclick="deleteFood(${item.id})">
+
+                Remove
+
+            </button>
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   DELETE FOOD
+===================================================== */
+
+function deleteFood(id){
+
+    foodItems =
+        foodItems.filter(
+            item => item.id !== id
+        );
+
+
+    recalculateFood();
+
+}
+
+
+/* =====================================================
+   EXERCISE CALORIES
+===================================================== */
+
+function burn(){
+
+    const met =
+        Number(
+            document
+                .getElementById("exerciseType")
+                .value
+        );
+
+
+    const weight =
+        Number(
+            document
+                .getElementById("weight")
+                .value
+        );
+
+
+    const duration =
+        Number(
+            document
+                .getElementById("duration")
+                .value
+        );
+
+
+    const select =
+        document
+            .getElementById("exerciseType");
+
+
+    if(weight <= 0 || duration <= 0){
+
+        alert(
+            "Please enter valid exercise details."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       MET calorie formula
+
+       Calories =
+       MET × 3.5 × body weight / 200 × minutes
+    */
+
+
+    burnVal =
+        met *
+        3.5 *
+        weight /
+        200 *
+        duration;
+
+
+    const activityName =
+        select.options[
+            select.selectedIndex
+        ].text;
+
+
+    document
+        .getElementById("activityName")
+        .textContent =
+        activityName;
+
+
+    document
+        .getElementById("durationText")
+        .textContent =
+        "Duration: " +
+        duration +
+        " minutes";
+
+
+    document
+        .getElementById("burned")
+        .innerHTML =
+        "🔥 " +
+        fmt(burnVal) +
+        ' <small>kcal</small>';
+
+
+    document
+        .getElementById("dashBurn")
+        .textContent =
+        fmt(burnVal) +
+        " kcal";
+
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function updateDashboard(){
+
+    let remainingCalories =
+        target -
+        total +
+        burnVal;
+
+
+    if(remainingCalories < 0){
+
+        remainingCalories = 0;
+
+    }
+
+
+    document
+        .getElementById("remaining")
+        .textContent =
+        fmt(remainingCalories) +
+        " kcal";
+
+}
+
+
+/* =====================================================
+   RESET PROFILE
+===================================================== */
+
+function resetProfile(){
+
+    document.getElementById("age")
+        .value = 30;
+
+
+    document.getElementById("height")
+        .value = 165;
+
+
+    document.getElementById("weight")
+        .value = 65;
+
+
+    document.getElementById("gender")
+        .value = "Female";
+
+
+    document.getElementById("activity")
+        .value = "1.55";
+
+
+    document.getElementById("goal")
+        .value = "0";
+
+
+    calculate();
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+calculate();
+
+renderFoodLog();
+
+burn();
+
+
+</script>
+
+
+</body>
+
+</html>
