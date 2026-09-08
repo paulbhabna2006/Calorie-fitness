@@ -1,0 +1,43 @@
+{
+  "dataset_size": 24,
+  "features": [
+    "Gender",
+    "Age",
+    "Height",
+    "Weight",
+    "Duration",
+    "Heart_Rate",
+    "Body_Temp",
+    "Exercise_Type"
+  ],
+  "test_size": 0.25,
+  "results": {
+    "Linear Regression": {
+      "MAE": 69.63,
+      "RMSE": 78.78,
+      "R2": 0.452
+    },
+    "Random Forest": {
+      "MAE": 80.29,
+      "RMSE": 89.0,
+      "R2": 0.3
+    }
+  },
+  "best_model": "Linear Regression",
+  "actual": [
+    390,
+    360,
+    145,
+    355,
+    320,
+    125
+  ],
+  "predicted": [
+    317.6,
+    236.2,
+    146.9,
+    262.9,
+    379.5,
+    57.0
+  ]
+}

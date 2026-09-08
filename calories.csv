@@ -1,0 +1,25 @@
+Gender,Age,Height,Weight,Duration,Heart_Rate,Body_Temp,Exercise_Type,Calories
+Male,25,175,75,30,120,37.4,Walking,145
+Female,30,162,60,45,135,37.8,Cycling,265
+Male,35,180,85,30,150,38.2,Running,405
+Female,28,165,58,60,125,37.5,Yoga,160
+Male,22,172,70,20,155,38.5,HIIT,280
+Female,40,160,72,40,138,37.9,Swimming,330
+Male,45,178,90,30,130,37.7,Strength training,245
+Female,24,168,62,25,145,38.1,Jogging,225
+Male,32,176,78,45,125,37.6,Cycling,390
+Female,36,158,68,30,118,37.3,Walking,125
+Male,29,182,82,50,150,38.3,Swimming,535
+Female,27,164,55,35,155,38.4,Skipping,320
+Male,50,170,88,45,122,37.5,Yoga,205
+Female,33,170,65,45,132,37.8,Dancing,280
+Male,38,174,80,25,160,38.6,HIIT,360
+Female,45,155,70,35,140,38.0,Strength training,235
+Male,26,180,76,40,145,38.0,Jogging,360
+Female,31,163,61,30,150,38.2,Running,335
+Male,42,176,86,60,128,37.6,Walking,355
+Female,23,167,59,50,130,37.7,Cycling,305
+Male,34,181,83,35,155,38.4,Skipping,460
+Female,39,159,66,40,120,37.5,Yoga,175
+Male,28,175,74,30,135,37.8,Dancing,245
+Female,34,166,63,20,158,38.5,HIIT,260

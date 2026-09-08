@@ -1,0 +1,101 @@
+{
+    "profile": {
+        "age": 21,
+        "gender": "Female",
+        "height": 130.0,
+        "weight": 37.0,
+        "activity": 1.375,
+        "goal": 300
+    },
+    "foods": [
+        {
+            "name": "\ud83e\uded3 Roti",
+            "meal": "Breakfast",
+            "quantity": 1.0,
+            "calories": 120.0,
+            "protein": 3.5,
+            "carbs": 18.0,
+            "fat": 4.0
+        },
+        {
+            "name": "\u2615 Milk Tea",
+            "meal": "Breakfast",
+            "quantity": 1.0,
+            "calories": 120.0,
+            "protein": 4.0,
+            "carbs": 20.0,
+            "fat": 3.0
+        },
+        {
+            "name": "\ud83c\udf5a Rice",
+            "meal": "Lunch",
+            "quantity": 1.0,
+            "calories": 130.0,
+            "protein": 3.0,
+            "carbs": 28.0,
+            "fat": 0.3
+        },
+        {
+            "name": "\ud83c\udf5b Dal",
+            "meal": "Lunch",
+            "quantity": 1.0,
+            "calories": 210.0,
+            "protein": 7.0,
+            "carbs": 30.0,
+            "fat": 7.0
+        },
+        {
+            "name": "\ud83e\udd54 Aloo Sabzi",
+            "meal": "Dinner",
+            "quantity": 1.0,
+            "calories": 190.0,
+            "protein": 5.0,
+            "carbs": 25.0,
+            "fat": 8.0
+        },
+        {
+            "name": "\ud83e\uded3 Roti",
+            "meal": "Dinner",
+            "quantity": 1.0,
+            "calories": 120.0,
+            "protein": 3.5,
+            "carbs": 18.0,
+            "fat": 4.0
+        },
+        {
+            "name": "\ud83c\udf6a Biscuits",
+            "meal": "Breakfast",
+            "quantity": 1.0,
+            "calories": 150.0,
+            "protein": 2.0,
+            "carbs": 20.0,
+            "fat": 7.0
+        },
+        {
+            "name": "\ud83c\udf6a Biscuits",
+            "meal": "Snack",
+            "quantity": 1.0,
+            "calories": 150.0,
+            "protein": 2.0,
+            "carbs": 20.0,
+            "fat": 7.0
+        },
+        {
+            "name": "\u2615 Milk Tea",
+            "meal": "Snack",
+            "quantity": 1.0,
+            "calories": 120.0,
+            "protein": 4.0,
+            "carbs": 20.0,
+            "fat": 3.0
+        }
+    ],
+    "exercises": [
+        {
+            "name": "\ud83d\udeb6 Walking",
+            "met": 3.5,
+            "duration": 20,
+            "calories": 45.324999999999996
+        }
+    ]
+}
